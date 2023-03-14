@@ -7,17 +7,16 @@ export function List() {
         task: 'React',
         time: '02:00:00'
     }, {
-        task : 'Js',
+        task: 'Js',
         time: '01:10:00'
     }, {
         task: 'Typescript',
         time: '01:30:00'
     }])
-    return(
+    return (
         <aside className={style.taskList}>
-            <h2 onClick={() => {
-                console.log('h2 clicked', tasks)
-                setTask([...tasks, { task: 'Learn states', time: "03:00:00"}])
+           <h2 onClick={() => {
+                setTask([...tasks, { task: "Estudar estado", time: "05:00:00"}])
             }}> Day's study </h2>
             <ul>
                 {tasks.map((item, index) => (
@@ -27,7 +26,7 @@ export function List() {
                     />
                 ))}
             </ul>
-        </aside>
+        </aside >
     )
 }
 

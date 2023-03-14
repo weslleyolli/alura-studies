@@ -1,6 +1,6 @@
 import React from 'react';
 import Forms from '../components/Forms';
-import { List } from '../components/List';
+import { List }   from '../components/List';
 import Stopwatch from '../components/Stopwatch';
 import  style  from './App.module.scss'
 
