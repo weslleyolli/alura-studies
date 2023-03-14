@@ -1,8 +1,8 @@
-import { time } from "console";
 import React from "react";
 import Button from "../Button";
 import { ITask } from "../types/task";
 import style from './Forms.module.scss'
+import { v4 as uuidv4 } from 'uuid'
 
 class Forms extends React.Component <{
     setTask: React.Dispatch<React.SetStateAction<ITask[]>>
@@ -14,8 +14,21 @@ class Forms extends React.Component <{
 
     saveTask(event: React.FormEvent) {
         event.preventDefault()
-        this.props.setTask(tasksOld => [...tasksOld, {...this.state }])
-        
+        this.props.setTask(tasksOld =>
+            [
+                ...tasksOld,
+                {
+                    ...this.state,
+                    selected: false,
+                    completed: false,
+                    id: uuidv4()
+                }
+            ]
+        );
+        this.setState({
+            task: '',
+            time: '00:00:00'
+        })    
     }
     render() {
         return (
