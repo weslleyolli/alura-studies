@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { timeToSecond } from "../../common/utils/date";
 import Button from "../Button";
 import { ITask } from "../types/task";
@@ -11,9 +11,12 @@ interface Props {
 
 export default function Stopwatch({ selected }: Props) {
     const [ time, setTime] = useState<number>();
-    if(selected?.time) {
-        setTime(timeToSecond(selected.time))
-    }
+
+    useEffect(() =>  {
+        if(selected?.time){
+            setTime(timeToSecond(selected.time))
+        }
+    },[selected])
     return (
         <div className={style.stopwatch}>
             <p className={style.title}>Select a card and start the stopwatch</p>
