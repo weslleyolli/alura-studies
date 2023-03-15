@@ -19,7 +19,7 @@ export function List( { tasks, selectedTask }: Props) {
                         key={item.id}
                         {...item}
                     />
-                ))}
+                )))}
             </ul>
         </aside >
     )

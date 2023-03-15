@@ -11,6 +11,10 @@ function App() {
 
   const selectedTask = (taskSelected: ITask) => {
     setSelected(taskSelected)
+    setTask(tasksOlds => tasksOlds.map(task => ({
+      ...task,
+      selected: task.id === taskSelected.id ? true : false
+    })))
   }
   return (
     <div className={style.AppStyle}>

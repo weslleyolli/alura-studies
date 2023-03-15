@@ -7,7 +7,7 @@ interface Props extends ITask {
 
 export default function Item({task, time, selected, completed, id, selectedTask}: Props) {
     return (
-        <li className={style.item} onClick={() => selectedTask({
+        <li className={`${style.item} ${selected ? style.itemSelected : ''}`} onClick={() => selectedTask({
             task,
             time,
             selected,
