@@ -6,10 +6,11 @@ import Clock from "./Clock";
 import style from "./Stopwatch.module.scss"
 
 interface Props {
-    selected: ITask | undefined
+    selected: ITask | undefined,
+    closeTask: () => void
 }
 
-export default function Stopwatch({ selected }: Props) {
+export default function Stopwatch({ selected, closeTask }: Props) {
     const [ time, setTime] = useState<number>();
 
     useEffect(() =>  {
@@ -24,6 +25,7 @@ export default function Stopwatch({ selected }: Props) {
                 setTime(cont - 1)
                 return regressive(cont - 1) 
             }
+            closeTask()
         }, 1000)
     }
 
