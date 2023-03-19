@@ -1,77 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Button";
 import { ITask } from "../types/task";
 import style from './Forms.module.scss'
 import { v4 as uuidv4 } from 'uuid'
+import { Interface } from "readline";
 
-class Forms extends React.Component <{
-    setTask: React.Dispatch<React.SetStateAction<ITask[]>>
-}> {
-    state = {
-        task: '',
-        time: ''
-    };
+interface Props {
+    setTasks: React.Dispatch<React.SetStateAction<ITask[]>>
+}
 
-    saveTask(event: React.FormEvent) {
+
+function Forms( {  setTasks  }:Props) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [task, setTask] = useState("");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [time, setTime] = useState("00:00")
+    function saveTask(event: React.FormEvent) {
         event.preventDefault()
-        this.props.setTask(tasksOld =>
+        setTasks(tasksOld =>
             [
                 ...tasksOld,
                 {
-                    ...this.state,
+                    task,
+                    time,
                     selected: false,
                     completed: false,
                     id: uuidv4()
                 }
             ]
         );
-        this.setState({
-            task: '',
-            time: '00:00:00'
-        })    
+        setTask("");
+        setTime("00:00")
     }
-    render() {
-        return (
-            <form className={style.newTask} onSubmit={this.saveTask.bind(this)}>
-                <div className={style.inputContainer}>
-                    <label htmlFor="task">
-                        Add a new study
-                    </label>
-                    <input
-                        type="text"
-                        name="task"
-                        value={this.state.task}
-                        onChange={event => this.setState({...this.state, task: event.target.value})}
-                        id="task"
-                        placeholder="What you want study?"
-                        required
-                    />
-                </div>
-                <div className={style.inputContainer}>
-                    <label htmlFor="time">
-                        Time
-                    </label>
-                    <input
-                        type="time"
-                        step='1'
-                        name="time"
-                        value={this.state.time}
-                        onChange={event => this.setState({...this.state, time: event.target.value})}
-                        id="time"
-                        min="00:00:00"
-                        max="01:30:00"
-                        required
-                    />
-
-                </div>
-                <Button 
-                    type="submit"
-                    text='Add'
+    return (
+        <form className={style.newTask} onSubmit={saveTask}>
+            <div className={style.inputContainer}>
+                <label htmlFor="task">
+                    Add a new study
+                </label>
+                <input
+                    type="text"
+                    name="task"
+                    value={task}
+                    onChange={event => setTask(event.target.value)}
+                    id="task"
+                    placeholder="What you want study?"
+                    required
                 />
-                
-            </form>
-        )
-    }
+            </div>
+            <div className={style.inputContainer}>
+                <label htmlFor="time">
+                    Time
+                </label>
+                <input
+                    type="time"
+                    step='1'
+                    name="time"
+                    value={time}
+                    onChange={event => setTime(event.target.value)}
+                    id="time"
+                    min="00:00:00"
+                    max="01:30:00"
+                    required
+                />
+
+            </div>
+            <Button
+                type="submit"
+                text='Add'
+            />
+
+        </form>
+    )
 }
 
 export default Forms
