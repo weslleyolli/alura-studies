@@ -14,7 +14,7 @@
 
 ## 🧪 Technologies
 
-This project was developed using the following technologies:
+The project was developed using the following technologies:
 
 - [React](https://pt-br.reactjs.org/docs/getting-started.html)
 - [Figma](https://www.figma.com/)
